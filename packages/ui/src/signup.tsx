@@ -10,9 +10,10 @@ interface userInput {
 
 interface Signupprops {
   onSignup: ({}: userInput) => Promise<Object>;
+  onSignin: () => void;
 }
 
-export function Signup({ onSignup }: Signupprops): JSX.Element {
+export function Signup({ onSignup, onSignin }: Signupprops): JSX.Element {
   const [user, setUser] = useState({
     name: "",
     number: "",
@@ -60,8 +61,10 @@ export function Signup({ onSignup }: Signupprops): JSX.Element {
           <div
             className="mt-4 rounded-lg bg-blue-600 text-white p-1 w-full md:w-2/3 max-w-lg cursor-pointer"
             onClick={async () => {
-              const res = await onSignup(user);
-              console.log(res);
+              const res: any = await onSignup(user);
+              if (res.message) {
+                onSignin();
+              } else alert(res.error);
             }}
           >
             Sign up !

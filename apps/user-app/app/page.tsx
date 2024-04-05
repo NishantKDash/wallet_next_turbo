@@ -8,7 +8,9 @@ export default function Page(): JSX.Element {
   return (
     <div>
       <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
-      {!session.data?.user && <Signup onSignup={signUp}></Signup>}
+      {!session.data?.user && (
+        <Signup onSignup={signUp} onSignin={signIn}></Signup>
+      )}
     </div>
   );
 }
