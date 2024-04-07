@@ -1,16 +1,15 @@
-"use client";
-import { Appbar } from "@repo/ui/appbar";
-import { Signup } from "@repo/ui/signup";
-import { signIn, signOut, useSession } from "next-auth/react";
-import signUp from "./actions/userSignup";
-export default function Page(): JSX.Element {
-  const session = useSession();
-  return (
-    <div>
-      <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
-      {!session.data?.user && (
-        <Signup onSignup={signUp} onSignin={signIn}></Signup>
-      )}
-    </div>
-  );
+import SignupClient from "./components/SignupClient";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./lib/auth";
+import { redirect } from "next/navigation";
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+
+  if (session?.user) redirect("/dashboard");
+  else
+    return (
+      <div>
+        <SignupClient></SignupClient>
+      </div>
+    );
 }

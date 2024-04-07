@@ -33,7 +33,8 @@ export const authOptions = {
             return {
               id: existingUser.id.toString(),
               name: existingUser.name,
-              email: existingUser.number,
+              email: existingUser.email,
+              number: existingUser.number,
             };
           }
           return null;
@@ -42,12 +43,13 @@ export const authOptions = {
       },
     }),
   ],
+
   secret: process.env.JWT_SECRET || "secret",
+
   callbacks: {
     // TODO: can u fix the type here? Using any is bad
     async session({ token, session }: any) {
       session.user.id = token.sub;
-
       return session;
     },
   },
