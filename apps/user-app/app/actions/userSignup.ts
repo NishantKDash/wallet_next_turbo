@@ -27,17 +27,29 @@ export default async function (user: userInput): Promise<Object> {
     if (existingUser) {
       return { error: "User already exists" };
     }
-    const newUser = await prisma.user.create({
-      data: {
-        name: user.name,
-        email: user.email,
-        number: user.number,
-        password: hashedPassword,
-      },
+
+    const result = await prisma.$transaction(async (prisma) => {
+      const newUser = await prisma.user.create({
+        data: {
+          name: user.name,
+          email: user.email,
+          number: user.number,
+          password: hashedPassword,
+        },
+      });
+      const balance = await prisma.balance.create({
+        data: {
+          userId: newUser.id,
+          amount: 0,
+          locked: 0,
+        },
+      });
+
+      return { userId: newUser.id, balance: balance };
     });
 
     return {
-      message: `User successfully created with id ${newUser.id}`,
+      message: `User successfully created with id ${result.userId}`,
     };
   } catch (e) {
     console.error(e);

@@ -59,3 +59,9 @@ enum OnRampStatus {
   Failure
   Processing
 }
+
+model Provider {
+  id    Int    @id @default(autoincrement())
+  name  String
+  token String
+}

@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import prisma from "@repo/db/client";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
 app.use(express.json());
+app.use(cors());
 
 app.post("/", async (req, res) => {
   const paymentInformation: {
@@ -31,7 +33,6 @@ app.post("/", async (req, res) => {
           },
         },
       }),
-
       prisma.onRampTransanction.updateMany({
         where: {
           token: paymentInformation.token,
