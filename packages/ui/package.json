@@ -5,7 +5,7 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./code": "./src/code.tsx",
-    "./appbar": "./src/Appbar.tsx",
+    "./appbar": "./src/appbar.tsx",
     "./signup" : "./src/signup.tsx",
     "./card" : "./src/card.tsx",
     "./center" : "./src/center.tsx",
