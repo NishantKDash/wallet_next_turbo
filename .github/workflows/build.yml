@@ -1,15 +1,9 @@
 name: Build on PR
 
 on:
-  workflow_dispatch:
-    inputs:
-      approval:
-        description: "Approve to trigger workflow"
-        required: true
-
-  #pull_request:
-  #branches:
-  #- main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
