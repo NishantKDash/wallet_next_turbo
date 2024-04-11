@@ -1,9 +1,15 @@
 name: Build on PR
 
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      approval:
+        description: "Approve to trigger workflow"
+        required: true
+
+  #pull_request:
+  #branches:
+  #- main
 
 jobs:
   build:
@@ -19,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Generate Prisma Client
-        run: cd ../packages/db && npm run prismaClientGenerate && cd../..
+        run: cd ../../packages/db && npm run prismaClientGenerate && cd../..
 
       - name: Run Build
         run: npm run build
