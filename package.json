@@ -6,7 +6,10 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prismaClientGenerate":"cd packages/db && npx prisma generate && cd ../.."
+    "prismaClientGenerate":"cd packages/db && npx prisma generate && cd ../..",
+    "start-user-app":"cd ./apps/user-app && npm run start",
+    "start-mock-bank":"cd ./apps/mock-bank && npm run start",
+    "start-bank-webhook":"cd ./apps/bank-webhook && npm run start"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
