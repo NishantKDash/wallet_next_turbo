@@ -58,7 +58,7 @@ jobs:
 
       - name: SSH into EC2 instance
         run: |
-          ssh -tt -i key.pem ${{secrets.SSH_USERNAME}}@${{secrets.SSH_USERNAME}} 
+          ssh -tt -i key.pem ${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}} 
           sudo docker pull l0nw0lf/user-app:latest
           sudo docker stop user-app || true
           sudo docker rm user-app || true
