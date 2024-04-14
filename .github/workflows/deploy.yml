@@ -24,10 +24,10 @@ jobs:
           context: .
           file: ./docker/Dockerfile.bankWebhook
           push: true
-          tags: l0nw0lf/bankWebhook:latest
+          tags: l0nw0lf/bank-webhook:latest
 
       - name: Verify Pushed Image
-        run: docker pull l0nw0lf/bankWebhook:latest
+        run: docker pull l0nw0lf/bank-webhook:latest
 
       - name: Build and Push MockBank image
         uses: docker/build-push-action@v2
@@ -35,10 +35,10 @@ jobs:
           context: .
           file: ./docker/Dockerfile.mockBank
           push: true
-          tags: l0nw0lf/mockBank:latest
+          tags: l0nw0lf/mock-bank:latest
 
       - name: Verify Pushed Image
-        run: docker pull l0nw0lf/mockBank:latest
+        run: docker pull l0nw0lf/mock-bank:latest
 
       - name: Build and Push UserApp image
         uses: docker/build-push-action@v2
@@ -46,7 +46,7 @@ jobs:
           context: .
           file: ./docker/Dockerfile.userApp
           push: true
-          tags: l0nw0lf/userApp:latest
+          tags: l0nw0lf/user-app:latest
 
       - name: Verify Pushed Image
-        run: docker pull l0nw0lf/userApp:latest
+        run: docker pull l0nw0lf/user-app:latest
